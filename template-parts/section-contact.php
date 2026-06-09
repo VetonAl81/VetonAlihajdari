@@ -1,3 +1,4 @@
+<?php $wa_url = vae_whatsapp_url( 'Hello Veton, I would like to get in touch with you.' ); ?>
 <section id="contact" class="vae-contact">
     <div class="container">
         <div class="section-label">Get in Touch</div>
@@ -22,10 +23,14 @@
                     </div>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-item-icon"><i class="bi bi-whatsapp"></i></div>
+                    <div class="contact-item-icon" style="background:rgba(37,211,102,.25);">
+                        <i class="bi bi-whatsapp" style="color:#25d366;"></i>
+                    </div>
                     <div class="contact-item-text">
                         <span>WhatsApp</span>
-                        <a href="https://wa.me/38344600518" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+                        <a href="<?php echo esc_url( $wa_url ); ?>" target="_blank" rel="noopener noreferrer">
+                            Message on WhatsApp
+                        </a>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -37,19 +42,26 @@
                 </div>
 
                 <div class="social-block">
-                    <div class="social-label">Connect</div>
+                    <div class="social-label">Follow &amp; Connect</div>
                     <div class="social-row">
-                        <a href="https://www.linkedin.com/in/vetonalihajdari" class="social-btn" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                            <i class="bi bi-linkedin"></i>
+                        <?php foreach ( vae_social_links() as $key => $s ) :
+                            $extra = ( $key === 'youtube' ) ? ' style="background:rgba(255,0,0,.2);"' : '';
+                            $extra = ( $key === 'instagram' ) ? ' style="background:rgba(225,48,108,.2);"' : $extra;
+                        ?>
+                        <a href="<?php echo esc_url( $s['url'] ); ?>"
+                           class="social-btn"
+                           target="_blank" rel="noopener noreferrer"
+                           title="<?php echo esc_attr( $s['label'] ); ?>"
+                           <?php echo $extra; ?>>
+                            <i class="bi <?php echo esc_attr( $s['icon'] ); ?>"></i>
                         </a>
-                        <a href="https://github.com/vetonalihajdari" class="social-btn" target="_blank" rel="noopener noreferrer" title="GitHub">
-                            <i class="bi bi-github"></i>
-                        </a>
-                        <a href="https://www.facebook.com/vetonalihajdari" class="social-btn" target="_blank" rel="noopener noreferrer" title="Facebook">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                        <a href="mailto:veton@alihajdari.com" class="social-btn" title="Email">
-                            <i class="bi bi-envelope-fill"></i>
+                        <?php endforeach; ?>
+                        <a href="<?php echo esc_url( $wa_url ); ?>"
+                           class="social-btn"
+                           style="background:rgba(37,211,102,.2);"
+                           target="_blank" rel="noopener noreferrer"
+                           title="WhatsApp">
+                            <i class="bi bi-whatsapp"></i>
                         </a>
                     </div>
                 </div>
@@ -58,31 +70,36 @@
             <div class="contact-form-wrap">
                 <h3 class="contact-form-title">Send a Message</h3>
                 <div id="contact-success" class="alert-success" style="display:none;"></div>
-                <div id="contact-errors" class="alert-error" style="display:none;"></div>
+                <div id="contact-errors"  class="alert-error"   style="display:none;"></div>
 
                 <form id="vae-contact-form" novalidate>
                     <?php wp_nonce_field( 'vae_contact', '_wpnonce' ); ?>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="first_name">First Name</label>
-                            <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First name" required>
+                            <input type="text" id="first_name" name="first_name" class="form-control"
+                                   placeholder="First name" required autocomplete="given-name">
                         </div>
                         <div class="form-group">
                             <label for="last_name">Last Name</label>
-                            <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last name" required>
+                            <input type="text" id="last_name" name="last_name" class="form-control"
+                                   placeholder="Last name" required autocomplete="family-name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="your@email.com" required>
+                        <input type="email" id="email" name="email" class="form-control"
+                               placeholder="your@email.com" required autocomplete="email">
                     </div>
                     <div class="form-group">
                         <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" class="form-control" placeholder="What is this regarding?" required>
+                        <input type="text" id="subject" name="subject" class="form-control"
+                               placeholder="What is this regarding?" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" class="form-control" placeholder="Your message..." required></textarea>
+                        <textarea id="message" name="message" class="form-control"
+                                  placeholder="Your message..." required></textarea>
                     </div>
                     <button type="submit" class="btn-send" id="vae-submit">
                         <i class="bi bi-send-fill"></i> Send Message
@@ -92,3 +109,17 @@
         </div>
     </div>
 </section>
+
+<!-- WhatsApp floating button -->
+<a href="<?php echo esc_url( $wa_url ); ?>"
+   class="whatsapp-float"
+   target="_blank" rel="noopener noreferrer"
+   title="Chat on WhatsApp"
+   aria-label="Chat on WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+</a>
+
+<!-- Back to top -->
+<button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+    <i class="bi bi-arrow-up"></i>
+</button>
