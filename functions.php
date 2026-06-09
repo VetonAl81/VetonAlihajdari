@@ -41,7 +41,7 @@ add_action( 'after_setup_theme', function () {
 add_action( 'wp_head', function () {
     $name  = get_theme_mod( 'vae_fullname', 'Veton Alihajdari' );
     $tagline = 'Education Policy Expert | Digital Transformation Leader | Public Sector Executive';
-    $photo = get_theme_mod( 'vae_profile_photo', '' );
+    $photo = get_theme_mod( 'vae_profile_photo', 'http://veton.alihajdari.com/wp-content/uploads/2026/06/BC48D306-7F63-4F1E-AC6B-3F34F53E9CEC-e1781014049432.png' );
     $url   = home_url( '/' );
     ?>
     <meta property="og:type"        content="website">
@@ -66,7 +66,7 @@ add_action( 'customize_register', function ( $wp_customize ) {
     ]);
 
     // Profile photo
-    $wp_customize->add_setting( 'vae_profile_photo', [ 'default' => '', 'sanitize_callback' => 'esc_url_raw' ] );
+    $wp_customize->add_setting( 'vae_profile_photo', [ 'default' => 'http://veton.alihajdari.com/wp-content/uploads/2026/06/BC48D306-7F63-4F1E-AC6B-3F34F53E9CEC-e1781014049432.png', 'sanitize_callback' => 'esc_url_raw' ] );
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'vae_profile_photo', [
         'label'   => 'Profile Photo',
         'section' => 'vae_profile',

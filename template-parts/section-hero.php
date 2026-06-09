@@ -1,5 +1,5 @@
 <?php
-$photo  = get_theme_mod( 'vae_profile_photo', '' );
+$photo  = get_theme_mod( 'vae_profile_photo', 'http://veton.alihajdari.com/wp-content/uploads/2026/06/BC48D306-7F63-4F1E-AC6B-3F34F53E9CEC-e1781014049432.png' );
 $cv_url = get_theme_mod( 'vae_cv_url', '' );
 $wa_url = vae_whatsapp_url( 'Hello Veton, I would like to get in touch with you.' );
 ?>
