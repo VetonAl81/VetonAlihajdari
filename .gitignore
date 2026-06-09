@@ -1,3 +1,7 @@
+# Environment / secrets
+.env
+.env.*
+
 # WordPress
 wp-config.php
 wp-content/uploads/
